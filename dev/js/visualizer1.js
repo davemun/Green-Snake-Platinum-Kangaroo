@@ -1,8 +1,3 @@
-$(function(){// Dimension Settings set the scene size
-
-
-  if ($('#first').hasClass('active')) {
-
 
   var width = window.innerWidth;
   var height = window.innerHeight;
@@ -141,9 +136,6 @@ $(function(){// Dimension Settings set the scene size
 
   // attach the render-supplied DOM element
   $container.append(renderer.domElement);
-
- }
-});
 
 // Originally used for cube created. Not currently being used
 // function randomFairColor() {
