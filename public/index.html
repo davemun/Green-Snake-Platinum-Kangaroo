@@ -8,7 +8,6 @@
   <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   
 </head>
@@ -142,41 +141,251 @@
   <script src="js/Sparks.js"></script>
   <script src="js/CanvasRenderer.js"></script> 
 
- <script src="js/visualizer2.js"></script> 
+<!--
+  <script src="js/visualizer2.js"></script>  
   <script src="js/visualizer1.js" id="visScript"></script>
-  
   <script src="js/visualizer3.js"></script> 
-  <!--<script src="js/visualizer4.js"></script>-->
+  <script src="js/visualizer4.js"></script>
+-->
 
   <script>
 
-  // $(function(){
+  $(function() {
+    var counter = 0;
+    var arr = ['js/visualizer1.js','js/visualizer2.js', 'js/visualizer3.js'];
+    var script = document.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', arr[counter]);
+    script.setAttribute('id', counter);
+    script.setAttribute('class', 'classify');
+    $('body').append(script);
+    console.log('script', script);
+
+    $('.right').on('click', function(){
+    if(counter < 3){
+      counter++;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', arr[counter]);
+    script.setAttribute('id', counter + 1);
+    script.setAttribute('class', 'classify');
+    $('.classify').remove();
+    $('.container1').empty();
+    $('.container2').empty();
+    $('.container3').empty();
+    $('body').append(script);
+         // console.log('script', script);
+        });
 
 
-  //   $('.right').on('click', function(){
-  //     var str = $('#visScript').attr("src");
-  //     var num = str.charAt(13);
-  //     var newStr =  'js/visualizer' + ( Math.min(parseInt(num) + 1, 3 ))+ '.js';
-  //     console.log(newStr);
+    $('.left').on('click', function(){
+    if(counter > 0){
+      counter--;
+    }
 
-  //     $('#visScript').attr("src", newStr);
+    var script = document.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', arr[counter]);
+    script.setAttribute('id', counter - 1);
+    script.setAttribute('class', 'classify');
+    $('.classify').remove();
+    $('.container3').empty();
+    $('.container2').empty();
+    $('.container1').empty();
+    $('body').append(script);
+         // console.log('script', script);
+    });
+    });
 
-  //   });
-
-  //   $('.left').on('click', function(){
-  //     var str = $('#visScript').attr("src");
-  //     var num = str.charAt(13);
-  //     var newStr =  'js/visualizer' + ( Math.max(parseInt(num) - 3, 1 ))+ '.js';
-  //     console.log(newStr);
-
-  //     $('#visScript').attr("src", newStr);
-
-  //   });
-
-  // });
 
   </script>
 
-  
+  <!--
+<script>
+
+      var container, stats;
+
+      var camera, scene, renderer;
+
+      var geometry, root;
+
+      var mouseX = 0, mouseY = 0;
+
+      var windowHalfX = window.innerWidth / 2;
+      var windowHalfY = window.innerHeight / 2;
+
+      document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+      init();
+      animate();
+
+      function init() {
+
+        container = document.getElementById( '#hierarchy' );
+        //document.body.appendChild( container );
+
+        camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 15000 );
+        camera.position.z = 500;
+
+        scene = new THREE.Scene();
+
+        var geometry = new THREE.BoxGeometry( 100, 100, 100 );
+        var material = new THREE.MeshNormalMaterial();
+
+        root = new THREE.Mesh( geometry, material );
+        root.position.x = 1000;
+        scene.add( root );
+
+        var amount = 200, object, parent = root;
+
+        for ( var i = 0; i < amount; i ++ ) {
+
+          object = new THREE.Mesh( geometry, material );
+          object.position.x = 100;
+
+          parent.add( object );
+          parent = object;
+
+        }
+
+        parent = root;
+
+        for ( var i = 0; i < amount; i ++ ) {
+
+          object = new THREE.Mesh( geometry, material );
+          object.position.x = - 100;
+
+          parent.add( object );
+          parent = object;
+
+        }
+
+        parent = root;
+
+        for ( var i = 0; i < amount; i ++ ) {
+
+          object = new THREE.Mesh( geometry, material );
+          object.position.y = - 100;
+
+          parent.add( object );
+          parent = object;
+
+        }
+
+        parent = root;
+
+        for ( var i = 0; i < amount; i ++ ) {
+
+          object = new THREE.Mesh( geometry, material );
+          object.position.y = 100;
+
+          parent.add( object );
+          parent = object;
+
+        }
+
+        parent = root;
+
+        for ( var i = 0; i < amount; i ++ ) {
+
+          object = new THREE.Mesh( geometry, material );
+          object.position.z = - 100;
+
+          parent.add( object );
+          parent = object;
+
+        }
+
+        parent = root;
+
+        for ( var i = 0; i < amount; i ++ ) {
+
+          object = new THREE.Mesh( geometry, material );
+          object.position.z = 100;
+
+          parent.add( object );
+          parent = object;
+
+        }
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setClearColor( 0xffffff );
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        renderer.sortObjects = false;
+        container.appendChild( renderer.domElement );
+
+        stats = new Stats();
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.bottom = '0px';
+        stats.domElement.style.zIndex = 100;
+        container.appendChild( stats.domElement );
+
+        //
+
+        window.addEventListener( 'resize', onWindowResize, false );
+
+      }
+
+      function onWindowResize() {
+
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+      }
+
+      function onDocumentMouseMove(event) {
+
+        mouseX = ( event.clientX - windowHalfX ) * 10;
+        mouseY = ( event.clientY - windowHalfY ) * 10;
+
+      }
+
+      //
+
+      function animate() {
+
+        requestAnimationFrame( animate );
+
+        render();
+        stats.update();
+        //console.log(analyser.getByteFrequencyData(dataArray));
+      }
+
+      function render() {
+        analyser.getByteFrequencyData(dataArray);
+        var time = Date.now() * 0.001;
+
+        var rx = Math.sin( time * 0.7 ) * 0.2;
+        var ry = Math.sin( time * 0.3 ) * 0.1;
+        var rz = Math.sin( time * 0.2 ) * 0.1;
+
+        camera.position.x += ( mouseX - camera.position.x ) * .05;
+        camera.position.y += ( - mouseY - camera.position.y ) * .05;
+
+        camera.lookAt( scene.position );
+
+        root.traverse( function ( object ) {
+
+          object.rotation.x = rx;
+          object.rotation.y = ry;
+          object.rotation.z = rz;
+
+        } );
+
+        renderer.render( scene, camera );
+
+      }
+
+    </script>
+    -->
+
+
 </body>
 </html>
