@@ -398,11 +398,30 @@ body {
   opacity: 0;
   width: 400px;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
+}
+
+.currentSong {
+  background: #ecf0f1;
+  position: absolute;
+  z-index: 10;
+  margin-left: 780px;
+  margin-top: 50px;
+  font-size: 1.5em;
+  overflow: hidden;
 }
 
 .playlist:hover {
   opacity: 0.8;
+}
+
+.carousel-control {
+}
+
+.icon-prev, .icon-next {
+  font-size: 90px !important;
+  font-weight: 900 !important;
+  color: black;
 }
 
 .playlist p:nth-child(2) {
