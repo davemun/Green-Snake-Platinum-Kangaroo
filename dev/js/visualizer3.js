@@ -1,5 +1,5 @@
 
-
+var vis3 = function(){
 var container, stats;
       var camera, scene, renderer;
       var uniforms;
@@ -49,4 +49,4 @@ var container, stats;
         uniforms.time.value += dataArray[0]/1000 + 0.1;
         renderer.render( scene, camera );
       }
-
+}
