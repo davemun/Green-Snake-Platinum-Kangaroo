@@ -23,8 +23,21 @@ var AudioManager = function() {
       source.stop();
     }
     if(AudioManager().sounds[i].type === "media"){
-
+        //todo
     }
+    $('.title').text("");
+  }
+
+  this.remove = function(){
+    if (this.source){
+      if(this.source.disconnect){
+        this.source.disconnect();
+      }
+      if(this.source.stop){
+        this.source.stop();
+      }
+    }
+    $('.title').text("");
   }
 
   this.playNext = function(restart, prev){
@@ -70,7 +83,9 @@ var AudioManager = function() {
       document.getElementsByTagName("audio").pause();
     }
 
+    $('.currentSong').text(AudioManager().sounds[i].fileName);
     AudioManager().source = source;
+    AudioManager().current = AudioManager().sounds[i].fileName;
     AudioManager().source.connect(AudioManager().nodes.masterGain);
     if(AudioManager().sounds[i].type === "buffer"){ 
       AudioManager().source.start();  //only works if buffer
@@ -109,12 +124,13 @@ var AudioManager = function() {
     this.analyser.fftSize = 256;
   }
 
-  this.hookUp = function(nodeType, nodeData){
+  this.hookUp = function(nodeType, nodeData, fileName){
     // Connect audio processing graph
     if(nodeType === "buffer"){
       $('.audio').slideUp();
       $('.bufferControls').slideDown();
-      AudioManager().sounds.push({data:nodeData, type:"buffer"});
+      var soundObj = {data:nodeData, type:"buffer", fileName: fileName};
+      AudioManager().sounds.push(soundObj);
     }else if(nodeType === "media"){
       $('.audio').slideDown();
       $('.bufferControls').slideUp();
@@ -242,11 +258,12 @@ function startSound(buffer, fileName) {
   // }
 
   // Connect audio processing graph
-  AudioManager().hookUp("buffer", buffer);
+  AudioManager().hookUp("buffer", buffer, fileName);
 
   elipses("off");
   $('#prompt').text("Loaded!");
-  $('.playlist').append($('<p></p>').text(fileName));
+  var song = $('<p></p>').text(fileName).data("fileName", fileName).attr("id", "playlistSong");
+  $('.playlist').append(song);
   setTimeout(function(){$('#prompt').fadeOut(2000)},1500);
 
   // $('.audio').slideUp(1000);

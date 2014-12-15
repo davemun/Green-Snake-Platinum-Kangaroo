@@ -54,7 +54,7 @@
 <!-- ===========Dave======== -->
   <div id="containerControls">   
       <div class="content"> 
-
+       <audio controls volume="0.3" id="audio" style="visibility:hidden;"></audio>
 
         <!-- <div class="audio">
         <audio controls volume="0.25" id="audio"></audio>
@@ -65,6 +65,8 @@
             <button id="load">Load</button>
           </div>
         </div> -->
+
+
 
 <menu class="medium">
  <button class="rw"></button>
@@ -92,7 +94,15 @@
         <output for="fader" id="volume" style="background:black; color:white; font-family:Avenir,Helvetica,Neue,Arial,sans-serif;">30%</output>
         </div>
         
-        </br>
+        <div style="position:relative; clear:both; margin-bottom:20px">
+        <label for="check">Load Remote Source: </label><input id="box" name="check" type="checkbox"> 
+        <label for="loop"> Loop Track: </label><input id="loop" name="loop" type="checkbox">
+        <div id="loader" class="hidden">
+          <input id="link" type="text" placeholder="http://source.site/soundfile">
+          <button id="load">Load</button>
+        </div>
+        </div>
+
         <div class="playlist"  style="position:absolute;">
           <div id="prompt"></div>
           <p>Playlist</p>
