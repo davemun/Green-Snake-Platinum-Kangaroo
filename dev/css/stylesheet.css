@@ -19,6 +19,7 @@
 
 .audio label {
 	line-height: 36px;
+  margin-left: -10px !important;
 }
 
 #loader input {
@@ -383,18 +384,49 @@ body {
   background: #c1c1c1;
 }
 
+#volume {
+  background: none !important; 
+  color: black !important;
+  margin-left: 10px;
+  margin-top: -8px;
+}
+
 
 .playlist {
+  margin-top: 15px;
   background-color: #ecf0f1;
-  opacity: 0.1;
+  opacity: 0;
+  width: 400px;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 .playlist:hover {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
-/*test*/
+.playlist p:nth-child(2) {
+  opacity: 1;
+  font-size: 1.5em;
+  background-color: none;
+  font-weight: 900;
+  text-align: center;
+}
+.playlist p:nth-child(2):hover {
+  opacity: 1;
+  font-size: 1.5em !important;
+  font-weight: 900 !important;
+  background-color: none !important;
+}
+
 .playlist p:hover {
+  font-size: 1.2em;
+  font-weight: 800;
+  cursor: pointer;
+  background-color: #bdc3c7;
   opacity: 1;
 }
+
+
+
 
