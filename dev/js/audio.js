@@ -147,12 +147,12 @@ document.getElementById('fader').addEventListener('change', function (vol) {
         var volume = document.querySelector('#volume');
         volume.value = (fader.value * 100) + '%';
     });
-document.getElementById('audio').addEventListener('ended', function(){
-  AudioManager().playNext();
-});
-document.getElementById('audio').addEventListener('play', function(){
-  AudioManager().paused = false;
-});
+// document.getElementById('audio').addEventListener('ended', function(){
+//   AudioManager().playNext();
+// });
+// document.getElementById('audio').addEventListener('play', function(){
+//   AudioManager().paused = false;
+// });
 
 //==================AudioManager takeover====================
 
