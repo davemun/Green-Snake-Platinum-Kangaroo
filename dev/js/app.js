@@ -25,7 +25,7 @@ $("#load").click(function(){
     else {
     $('audio').attr("src", $("#link").val());
   }
-
+  AudioManager().hookUp("media", dest);
 });
 // end
 
@@ -42,3 +42,20 @@ $('#loop').click(function(){
 });
 
 
+
+// a checkbox to provide the option to loop the audio
+$('#bufferStop').click(function(){
+  AudioManager().pause();
+});
+
+$('#bufferRestart').click(function(){
+  AudioManager().playNext(true);
+});
+
+$('#bufferNextSong').click(function(){
+  AudioManager().playNext();
+});
+
+$('#bufferPrevSong').click(function(){
+  AudioManager().playNext(false, true);
+});

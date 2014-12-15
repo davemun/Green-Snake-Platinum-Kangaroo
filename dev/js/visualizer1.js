@@ -1,4 +1,4 @@
-
+var vis1 = function(){
   var width = window.innerWidth;
   var height = window.innerHeight;
 
@@ -80,8 +80,8 @@
   // Makes the cubes change shape and color
   var updateCubes = function(){
     // reloads the fft data
-    analyser.getByteFrequencyData(dataArray);
-    analyser.getByteTimeDomainData(timeDomain);
+    AudioManager().analyser.getByteFrequencyData(dataArray);
+    AudioManager().analyser.getByteTimeDomainData(timeDomain);
 
     // check if the dataArray (audio buffer) is empty
     var zeros = Array.prototype.slice.call(dataArray);
@@ -116,7 +116,6 @@
 
   // Updates the visualizer
   var render = function () {
-
     updateCubes();
     controls.update();
     renderer.render(scene, camera);
@@ -131,11 +130,13 @@
   // and make it pretty
   renderer.setClearColor(0xffffff, 0.7);
   renderer.clear();
-
+  console.log("rendering")
   render();
 
   // attach the render-supplied DOM element
-  $container.append(renderer.domElement);
+  if($container.children().length < 1){
+    $container.append(renderer.domElement);
+  }
 
 // Originally used for cube created. Not currently being used
 // function randomFairColor() {
@@ -177,3 +178,5 @@
 //   gui.add(canvas, 'width', 800, 1200);
 //   gui.add(canvas, 'height', 800, 1200);
 // };
+}
+vis1();

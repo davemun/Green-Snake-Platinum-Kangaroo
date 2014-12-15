@@ -1,3 +1,4 @@
+var vis2 = function(){
 var renderer, scene, camera, stats;
     var particleSystem, uniforms, geometry;
     var particles = 100000;
@@ -6,7 +7,8 @@ var renderer, scene, camera, stats;
     init();
     animate();
     function init() {
-      camera = new THREE.PerspectiveCamera( 40, WIDTH / HEIGHT, 1, 10000 );
+      var settings = {};
+      settings.camera = new THREE.PerspectiveCamera( 40, WIDTH / HEIGHT, 1, 10000 );
       camera.position.z = 300;
       scene = new THREE.Scene();
       var attributes = {
@@ -81,5 +83,4 @@ var renderer, scene, camera, stats;
       renderer.render( scene, camera );
     }
     render();
-
-    //console.log(dataArray[0])
+}
