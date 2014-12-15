@@ -44,18 +44,18 @@ $('#loop').click(function(){
 
 
 // a checkbox to provide the option to loop the audio
-$('#bufferStop').click(function(){
+$('.stop').click(function(){
   AudioManager().pause();
 });
 
-$('#bufferRestart').click(function(){
+$('.play').click(function(){
   AudioManager().playNext(true);
 });
 
-$('#bufferNextSong').click(function(){
+$('.ff').click(function(){
   AudioManager().playNext();
 });
 
-$('#bufferPrevSong').click(function(){
+$('.rw').click(function(){
   AudioManager().playNext(false, true);
 });

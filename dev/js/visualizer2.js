@@ -7,10 +7,11 @@ var renderer, scene, camera, stats;
     init();
     animate();
     function init() {
-      var settings = {};
-      settings.camera = new THREE.PerspectiveCamera( 40, WIDTH / HEIGHT, 1, 10000 );
+      camera = new THREE.PerspectiveCamera( 40, WIDTH / HEIGHT, 1, 10000 );
+   
       camera.position.z = 300;
       scene = new THREE.Scene();
+      
       var attributes = {
         size:        { type: 'f', value: null },
         customColor: { type: 'c', value: null }

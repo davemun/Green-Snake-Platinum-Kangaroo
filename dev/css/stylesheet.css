@@ -153,6 +153,7 @@ menu .pause:hover:after {
   background-color: rgba(36, 36, 36, 0.8);
 }
 menu.medium {
+  margin-top: 30px;
   /* Play */
   /* Stop */
   /* Fast-Forward */
@@ -381,3 +382,19 @@ Other Styles
 body {
   background: #c1c1c1;
 }
+
+
+.playlist {
+  background-color: #ecf0f1;
+  opacity: 0.1;
+}
+
+.playlist:hover {
+  opacity: 0.6;
+}
+
+/*test*/
+.playlist p:hover {
+  opacity: 1;
+}
+
