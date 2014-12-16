@@ -12,7 +12,7 @@
   
 </head>
 <body>
-  <span class="currentSong">Current Song Here</span>
+  <span class="currentSong"></span>
   <div id="carousel-example-generic" class="carousel slide" data-interval="false">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -188,7 +188,7 @@
   <script src="js/CanvasRenderer.js"></script> 
 
   <!--<script src="js/visualizer2.js"></script> -->
-  <script src="js/visualizer1.js" id="visScript"></script>
+  <!-- <script src="js/visualizer1.js" id="visScript"></script> -->
   
   <!--<script src="js/visualizer3.js"></script> -->
   <!--<script src="js/visualizer4.js"></script>-->
@@ -224,8 +224,9 @@
 
   -->
 
-  <script>
-  
+<script>
+  var vis1IsOn = true, vis2IsOn = false, vis3IsOn = false;
+
 $(function() {
 var counter = 0;
 var arr = ['js/visualizer1.js','js/visualizer2.js', 'js/visualizer3.js'];
@@ -259,17 +260,23 @@ $('.classify').remove();
 $('#container1').empty();
 $('#container2').empty();
 $('#container3').empty();
-$('body').append(script);
 console.log('script', script);
 if(counter === 0){
-  vis1();
+  vis1IsOn = true;
+  vis2IsOn = false;
+  vis3IsOn = false;
 }
 if(counter === 1){
-  vis2();
+  vis1IsOn = false;
+  vis2IsOn = true;
+  vis3IsOn = false;
 }
 if(counter === 2){
-  vis3();
+  vis1IsOn = false;
+  vis2IsOn = false;
+  vis3IsOn = true;
 }
+$('body').append(script);
   });
 
 
@@ -296,17 +303,23 @@ if(counter === 2){
     $('#container1').empty();
     $('#container2').empty();
     $('#container3').empty();
-    $('body').append(script);
       console.log('script', script);
 if(counter === 0){
-  vis1();
+  vis1IsOn = true;
+  vis2IsOn = false;
+  vis3IsOn = false;
 }
 if(counter === 1){
-  vis2();
+  vis1IsOn = false;
+  vis2IsOn = true;
+  vis3IsOn = false;
 }
 if(counter === 2){
-  vis3();
+  vis1IsOn = false;
+  vis2IsOn = false;
+  vis3IsOn = true;
 }
+    $('body').append(script);
     });
 });
 

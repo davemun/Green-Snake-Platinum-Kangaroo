@@ -67,21 +67,28 @@ var renderer, scene, camera, stats;
       renderer.setSize( window.innerWidth, window.innerHeight );
     }
     function animate() {
-      requestAnimationFrame( animate );
-      render();
-      stats.update();
+      if(vis2IsOn){
+        requestAnimationFrame( animate );
+        render();
+        stats.update();
+      }
     }
     function render() {
-      analyser.getByteFrequencyData(dataArray);
-      analyser.getByteTimeDomainData(timeDomain);
-      var time = Date.now() * 0.005;
-      particleSystem.rotation.z = 0.01 * time ;
-      var size = geometry.attributes.size.array;
-      for( var i = 0; i < particles; i++ ) {
-        size[ i ] = dataArray[0]/10 * ( 1 + Math.sin( 0.1 * i + time ) );
+      if(vis2IsOn){
+        analyser.getByteFrequencyData(dataArray);
+        analyser.getByteTimeDomainData(timeDomain);
+        var time = Date.now() * 0.005;
+        particleSystem.rotation.z = 0.01 * time ;
+        var size = geometry.attributes.size.array;
+        for( var i = 0; i < particles; i++ ) {
+          size[ i ] = dataArray[0]/10 * ( 1 + Math.sin( 0.1 * i + time ) );
+        }
+        geometry.attributes.size.needsUpdate = true;
+        renderer.render( scene, camera );
       }
-      geometry.attributes.size.needsUpdate = true;
-      renderer.render( scene, camera );
     }
-    render();
+    if(vis2IsOn){
+      render();
+    }
 }
+vis2();

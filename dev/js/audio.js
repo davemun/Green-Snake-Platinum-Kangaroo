@@ -262,8 +262,11 @@ function startSound(buffer, fileName) {
 
   elipses("off");
   $('#prompt').text("Loaded!");
-  var song = $('<p></p>').text(fileName).data("fileName", fileName).attr("id", "playlistSong");
+  var song = $('<p></p>').text(fileName).data("fileName", fileName).attr("class", "playlistSong");
   $('.playlist').append(song);
+  $('.playlistSong').click(function(){
+    console.log("clicked!!");
+  });
   setTimeout(function(){$('#prompt').fadeOut(2000)},1500);
 
   // $('.audio').slideUp(1000);

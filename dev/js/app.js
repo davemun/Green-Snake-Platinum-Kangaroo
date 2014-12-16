@@ -54,29 +54,9 @@ $('.play').click(function(){
 
 $('.ff').click(function(){
   AudioManager().playNext();
+  console.log("clicked.")
 });
 
 $('.rw').click(function(){
   AudioManager().playNext(false, true);
-});
-
-
-//playlist songs will remove themself on click
-$('#playlistSong').click(function(){
-  console.log("clicked");
-
-  // var i = AudioManager().soundsIndex;
-  // console.log($(this));
-  // if(AudioManager().current === this.data.fileName && AudioManager().sounds.length === 1){
-  //   AudioManager().pause();
-  //   AudioManager().remove();
-  //   AudioManager().sounds = [];
-  //   AudioManager().soundsIndex = 0;
-  // }
-  // else if(AudioManager().current === this.data.fileName){
-  //   AudioManager().playNext();
-  //   var i = AudioManager().soundsIndex;
-  //   AudioManager().sounds.slice(i,1);
-  //   AudioManager().soundsIndex = Math.max(AudioManager().soundsIndex-1, 0);
-  // }
 });
