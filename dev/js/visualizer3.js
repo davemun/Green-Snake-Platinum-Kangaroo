@@ -1,3 +1,4 @@
+
 var vis3 = function(){
 
 var container, stats;
@@ -53,6 +54,6 @@ var container, stats;
           renderer.render( scene, camera );
         }
       }
-
 }
 vis3();
+
