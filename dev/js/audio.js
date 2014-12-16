@@ -28,7 +28,7 @@ var AudioManager = function() {
     $('.title').text("");
   }
 
-  this.remove = function(){
+  this.clean = function(){
     if (this.source){
       if(this.source.disconnect){
         this.source.disconnect();
@@ -262,11 +262,46 @@ function startSound(buffer, fileName) {
 
   elipses("off");
   $('#prompt').text("Loaded!");
-  var song = $('<p></p>').text(fileName).data("fileName", fileName).attr("class", "playlistSong");
-  $('.playlist').append(song);
-  $('.playlistSong').click(function(){
-    console.log("clicked!!");
+  var song = $('<p></p>').text(fileName);
+  song.data("fileName", fileName);
+  song.attr("class", "playlistSong");
+
+  song.click(function(){
+
+    console.log("clicked remove");
+    console.log($(this).data());
+
+
+    var i = AudioManager().soundsIndex;
+    if($(this).data().fileName === AudioManager().sounds[i].fileName && AudioManager().sounds.length === 1){
+      AudioManager().pause();
+      AudioManager().clean();
+      AudioManager().sounds = [];
+      AudioManager().soundsIndex = 0;
+    $('.currentSong').text("");
+    for(var i = 2; i < $('.playlist').children().length; i++){
+        if( $($('.playlist').children()[i]).data().fileName === $(this).data().fileName){
+          console.log("in splice")
+          $($('.playlist').children()[i]).remove();
+        }
+    }
+    }else if($(this).data().fileName === AudioManager().sounds[i].fileName){
+      AudioManager().clean();
+      AudioManager().sounds.splice(i,1);
+      AudioManager().soundsIndex = Math.min(i, AudioManager().sounds.length-1);
+    $('.currentSong').text("");
+    for(var i = 2; i < $('.playlist').children().length; i++){
+        if( $($('.playlist').children()[i]).data().fileName === $(this).data().fileName){
+          console.log("in splice")
+          $($('.playlist').children()[i]).remove();
+        }
+    }
+      AudioManager().playNext(true);
+    }
+    $('.playList').remove(this);
+    console.log(AudioManager().sounds);
   });
+  $('.playlist').append(song);
   setTimeout(function(){$('#prompt').fadeOut(2000)},1500);
 
   // $('.audio').slideUp(1000);

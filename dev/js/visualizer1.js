@@ -29,7 +29,7 @@ var vis1 = function(){
     for(var y = 8; y < 24; y += 2) {
       var geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
       var material = new THREE.MeshLambertMaterial({
-        ambient: 0x808080,
+        ambient: 0xe67e22,
         specular: 0x999999,
         shininess: 100,
         opacity:0.8,
@@ -117,7 +117,6 @@ var vis1 = function(){
   // Updates the visualizer
   var render = function () {
     if(vis1IsOn){
-      console.log("vis1 render1")
       updateCubes();
       controls.update();
       renderer.render(scene, camera);
@@ -128,7 +127,6 @@ var vis1 = function(){
   };
 
   if(vis1IsOn){
-      console.log("vis1 render2")
     // start the renderer
     renderer.setSize(width, height);
 
