@@ -37,7 +37,6 @@ var container, stats;
         uniforms.resolution.value.y = window.innerHeight;
         renderer.setSize( window.innerWidth, window.innerHeight );
       }
-      //
       function animate() {
         if(vis3IsOn){
           requestAnimationFrame( animate );
