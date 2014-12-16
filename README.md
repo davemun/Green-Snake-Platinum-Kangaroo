@@ -4,13 +4,13 @@
 
 ## Team
 
-  - __Product Owner__: [Nic Mitchell](https://github.com/nicmitchell)
-  - __Scrum Master__: [Pactrick McPike](https://github.com/mcpike)
-  - __Development Team Members__: [Victor Leung](https://github.com/victorleungtw)
+  - __Product Owner__: [Nic Mitchell](https://github.com/nicmitchell), [Essam Al Joubori](https://github.com/essamjoubori)
+  - __Scrum Master__: [Pactrick McPike](https://github.com/mcpike), [Dave Mun](https://github.com/davemun)
+  - __Development Team Members__: [Victor Leung](https://github.com/victorleungtw), [Phil Elauria](https://github.com/philelauria)
 
 ## Table of Contents
 
-1. [Usage](#Usage)
+<!-- 1. [Usage](#Usage) -->
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
@@ -18,10 +18,10 @@
 1. [Team](#team)
 1. [Contributing](#contributing)
 
-## Usage
-
+<!-- ## Usage -->
+<!-- 
 > For demo, please visit: [https://green-snake-platinum-kangaroo.herokuapp.com/](https://green-snake-platinum-kangaroo.herokuapp.com/)
-
+ -->
 ## Requirements
 
 - ThreeJS Revision 69
