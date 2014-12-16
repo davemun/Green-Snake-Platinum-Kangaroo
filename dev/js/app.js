@@ -25,7 +25,8 @@ $("#load").click(function(){
     else {
     $('audio').attr("src", $("#link").val());
   }
-  AudioManager().hookUp("media", dest);
+  var fileName = dest.slice(dest.lastIndexOf("/")+1)
+  AudioManager().hookUp("media", dest, fileName);
 });
 // end
 
