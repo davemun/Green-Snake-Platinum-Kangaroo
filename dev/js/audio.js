@@ -240,14 +240,14 @@ document.getElementById('fader').addEventListener('change', function (vol) {
 var elipses = function(state){
   if(state === "on"){
     status = setInterval(function(){
-      if($('#prompt').text() === "Loading"){
-        $('#prompt').text("Loading.");
-      }else if($('#prompt').text() === "Loading."){
-        $('#prompt').text("Loading..");
-      }else if($('#prompt').text() === "Loading.."){
-        $('#prompt').text("Loading...");
-      }else if($('#prompt').text() === "Loading..."){
-        $('#prompt').text("Loading");
+      if($('#prompt').text() === "Loading Files"){
+        $('#prompt').text("Loading Files.");
+      }else if($('#prompt').text() === "Loading Files."){
+        $('#prompt').text("Loading Files..");
+      }else if($('#prompt').text() === "Loading Files.."){
+        $('#prompt').text("Loading Files...");
+      }else if($('#prompt').text() === "Loading Files..."){
+        $('#prompt').text("Loading Files");
       }
     }, 500);
   }else if(state === "off"){
@@ -269,7 +269,7 @@ function onMP3Drop(evt) {
   evt.stopPropagation();
   evt.preventDefault();
 
-  $('#prompt').text("Loading...").fadeIn(1000);
+  $('#prompt').text("Loading Files...").fadeIn(1000);
   elipses("on");
 
   //store dropped files in var
