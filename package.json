@@ -1,6 +1,6 @@
 {
   "name": "Green-Snake-Platinum-Kangaroo",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A sound visualizer in Web Audio API and WebGL",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "visualizer",
     "threejs"
   ],
-  "author": "Nic Mitchell, Pactrick McPike, Victor Leung",
+  "author": "Dave Mun, Essam Joubori, Phil Elauria",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/VisualCloud/Green-Snake-Platinum-Kangaroo/issues"
