@@ -19,12 +19,12 @@ $('#box').click(function(){
 $("#load").click(function(){
   var dest = $("#link").val();
   // a little easter egg for Doctor Who fans
-  if ( dest === "who") {
-    $('audio').attr("src", 'sounds/doctor_who_theme_full.mp3');
-  } // otherwise just load the remote file
-    else {
-    $('audio').attr("src", $("#link").val());
-  }
+  // if ( dest === "who") {
+  //   $('audio').attr("src", 'sounds/doctor_who_theme_full.mp3');
+  // } // otherwise just load the remote file
+  //   else {
+  //   $('audio').attr("src", $("#link").val());
+  // }
   var fileName = dest.slice(dest.lastIndexOf("/")+1)
   AudioManager().hookUp("media", dest, fileName);
 });
