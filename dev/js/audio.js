@@ -169,7 +169,7 @@ var AudioManager = function() {
 
     //====================hookUp() if mediaType start====================
     else if(nodeType === "media"){
-      AudioManager().sounds.push({data:nodeData, type:"media", fileName:link.slice(nodeData.lastIndexOf("/")+1)});
+      AudioManager().sounds.push({data:nodeData, type:"media", fileName:fileName});
       var song = $('<p></p>').text(fileName);
       song.data("fileName", fileName);
       song.attr("class", "playlistSong");
@@ -203,6 +203,7 @@ var AudioManager = function() {
       //   }
       //   $('.playList').remove(this);
       // });
+
       $('.playlist').append(song);
     }
      //====================hookUp() if mediaType end====================
