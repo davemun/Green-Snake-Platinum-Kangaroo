@@ -217,13 +217,13 @@ var AudioManager = function() {
   return this;
 }
 //==================AudioManager====================
-//==================AudioManager takeover====================
+//==================AudioManager/etc dependency initialization====================
 AudioManager().init();
 var bufferLength = AudioManager().analyser.frequencyBinCount;
 var dataArray = new Uint8Array(bufferLength);
 var timeDomain = new Uint8Array(bufferLength);
 var audioBuffer, status, droppedFiles, fileReaders = [];
-
+var numFiles = 0, numFilesDone = 0;
 
 //event listeners
 document.addEventListener('drop', onMP3Drop, false);
@@ -235,7 +235,7 @@ document.getElementById('fader').addEventListener('change', function (vol) {
         volume.value = (fader.value * 100) + '%';
     });
 
-//==================AudioManager takeover====================
+//==================AudioManager/etc dependency initialization====================
 
 var elipses = function(state){
   if(state === "on"){
@@ -278,6 +278,7 @@ function onMP3Drop(evt) {
   //create reader for files that will pass data
   //to onDroppedMP3 callback after reading
   fileReaders = [];
+  numFiles += droppedFiles.length;
   for (var i = 0; i < droppedFiles.length; i++) {
       fileReaders[i] = new FileReader();
       fileReaders[i].index = i;
@@ -313,24 +314,13 @@ function onDroppedMP3Loaded(fileObj) {
 
 function startSound(buffer, fileName) {
 
-  // if (this.source){
-  //   if(this.source.disconnect){
-  //     this.source.disconnect();
-  //   }
-  //   if(this.source.stop){
-  //     this.source.stop();
-  //   }
-  // }
-
   // Connect audio processing graph
   AudioManager().hookUp("buffer", buffer, fileName);
-
-  elipses("off");
-  $('#prompt').text("Loaded!");
-  setTimeout(function(){$('#prompt').fadeOut(2000)},1500);
-
-  // $('.audio').slideUp(1000);
-  // setTimeout($('.bufferControls').slideDown(2000), 2000);
+  if(numFiles === ++numFilesDone){
+    elipses("off");
+    $('#prompt').text("Loaded!");
+    setTimeout(function(){$('#prompt').fadeOut(2000)},1500);
+  }
 }
 //==================File Drag And Drop Functionality====================
 
