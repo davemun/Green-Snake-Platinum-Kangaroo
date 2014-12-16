@@ -174,35 +174,35 @@ var AudioManager = function() {
       song.data("fileName", fileName);
       song.attr("class", "playlistSong");
 
-      // song.click(function(){
-      //   var i = AudioManager().soundsIndex;
-      //   if($(this).data().fileName === AudioManager().sounds[i].fileName && AudioManager().sounds.length === 1){
-      //     AudioManager().pause();
-      //     AudioManager().clean();
-      //     AudioManager().sounds = [];
-      //     AudioManager().soundsIndex = 0;
-      //     $('.currentSong').text("");
-      //     for(var i = 2; i < $('.playlist').children().length; i++){
-      //       if( $($('.playlist').children()[i]).data().fileName === $(this).data().fileName){
-      //         console.log("in splice")
-      //         $($('.playlist').children()[i]).remove();
-      //       }
-      //     }
-      //   }else if($(this).data().fileName === AudioManager().sounds[i].fileName){
-      //     AudioManager().clean();
-      //     AudioManager().sounds.splice(i,1);
-      //     AudioManager().soundsIndex = Math.min(i, AudioManager().sounds.length-1);
-      //     $('.currentSong').text("");
-      //     for(var i = 2; i < $('.playlist').children().length; i++){
-      //       if( $($('.playlist').children()[i]).data().fileName === $(this).data().fileName){
-      //         console.log("in splice")
-      //         $($('.playlist').children()[i]).remove();
-      //       }
-      //     }
-      //     AudioManager().playNext(true);
-      //   }
-      //   $('.playList').remove(this);
-      // });
+      song.click(function(){
+        var i = AudioManager().soundsIndex;
+        if($(this).data().fileName === AudioManager().sounds[i].fileName && AudioManager().sounds.length === 1){
+          AudioManager().pause();
+          AudioManager().clean();
+          AudioManager().sounds = [];
+          AudioManager().soundsIndex = 0;
+          $('.currentSong').text("");
+          for(var i = 2; i < $('.playlist').children().length; i++){
+            if( $($('.playlist').children()[i]).data().fileName === $(this).data().fileName){
+              console.log("in splice")
+              $($('.playlist').children()[i]).remove();
+            }
+          }
+        }else if($(this).data().fileName === AudioManager().sounds[i].fileName){
+          AudioManager().clean();
+          AudioManager().sounds.splice(i,1);
+          AudioManager().soundsIndex = Math.min(i, AudioManager().sounds.length-1);
+          $('.currentSong').text("");
+          for(var i = 2; i < $('.playlist').children().length; i++){
+            if( $($('.playlist').children()[i]).data().fileName === $(this).data().fileName){
+              console.log("in splice")
+              $($('.playlist').children()[i]).remove();
+            }
+          }
+          AudioManager().playNext(true);
+        }
+        $('.playList').remove(this);
+      });
 
       $('.playlist').append(song);
     }
