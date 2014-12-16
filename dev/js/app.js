@@ -35,9 +35,9 @@ $("#load").click(function(){
 $('#loop').click(function(){
    var isChecked = $('#loop').prop('checked');
    if (isChecked) {
-    $('audio').attr("loop", true);
+    AudioManager().source.loop = true;
    } else {
-    $('audio').attr("loop", false);
+    AudioManager().source.loop = false;
    }
 });
 
@@ -54,6 +54,7 @@ $('.play').click(function(){
 
 $('.ff').click(function(){
   AudioManager().playNext();
+  console.log("clicked.")
 });
 
 $('.rw').click(function(){

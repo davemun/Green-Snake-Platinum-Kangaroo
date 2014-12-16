@@ -116,26 +116,30 @@ var vis1 = function(){
 
   // Updates the visualizer
   var render = function () {
-    updateCubes();
-    controls.update();
-    renderer.render(scene, camera);
+    if(vis1IsOn){
+      console.log("vis1 render1")
+      updateCubes();
+      controls.update();
+      renderer.render(scene, camera);
 
-    // invokes render again
-    requestAnimationFrame(render);
+      // invokes render again
+      requestAnimationFrame(render);
+    }
   };
 
-  // start the renderer
-  renderer.setSize(width, height);
+  if(vis1IsOn){
+      console.log("vis1 render2")
+    // start the renderer
+    renderer.setSize(width, height);
 
-  // and make it pretty
-  renderer.setClearColor(0xffffff, 0.7);
-  renderer.clear();
-  console.log("rendering")
-  render();
-
-  // attach the render-supplied DOM element
-  if($container.children().length < 1){
-    $container.append(renderer.domElement);
+    // and make it pretty
+    renderer.setClearColor(0xffffff, 0.7);
+    renderer.clear();
+    render();
+    // attach the render-supplied DOM element
+    if($container.children().length < 1){
+      $container.append(renderer.domElement);
+    }
   }
 
 // Originally used for cube created. Not currently being used

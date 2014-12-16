@@ -1,5 +1,6 @@
 
 var vis3 = function(){
+
 var container, stats;
       var camera, scene, renderer;
       var uniforms;
@@ -38,15 +39,21 @@ var container, stats;
       }
       //
       function animate() {
-        requestAnimationFrame( animate );
-        render();
-        stats.update();
+        if(vis3IsOn){
+          requestAnimationFrame( animate );
+          render();
+          stats.update();
+        }
       }
       function render() {
-        analyser.getByteFrequencyData(dataArray);
-        analyser.getByteTimeDomainData(timeDomain);
+        if(vis3IsOn){
+          analyser.getByteFrequencyData(dataArray);
+          analyser.getByteTimeDomainData(timeDomain);
 
-        uniforms.time.value += dataArray[0]/1000 + 0.1;
-        renderer.render( scene, camera );
+          uniforms.time.value += dataArray[0]/1000 + 0.1;
+          renderer.render( scene, camera );
+        }
       }
 }
+vis3();
+

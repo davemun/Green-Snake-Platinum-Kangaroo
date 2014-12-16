@@ -12,33 +12,30 @@
   
 </head>
 <body>
+  <span class="currentSong"></span>
   <div id="carousel-example-generic" class="carousel slide" data-interval="false">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-  <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+  <!-- <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+  <li data-target="#carousel-example-generic" data-slide-to="1"></li> -->
   <!-- <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-
     <div class="item active">
       <div id="container1"></div>
       <div class="carousel-caption">
-        Drums
       </div>
     </div>
     <div class="item">
       <div id="container2"></div>
       <div class="carousel-caption">
-        slide 2
       </div>
     </div>
     <div class="item">
       <div id="container3"></div>
       <div class="carousel-caption">
-        slide 3
       </div>
     </div> 
 
@@ -57,7 +54,7 @@
 <!-- ===========Dave======== -->
   <div id="containerControls">   
       <div class="content"> 
-
+       <audio controls volume="0.3" id="audio" style="visibility:hidden;"></audio>
 
         <!-- <div class="audio">
         <audio controls volume="0.25" id="audio"></audio>
@@ -68,6 +65,8 @@
             <button id="load">Load</button>
           </div>
         </div> -->
+
+
 
 <menu class="medium">
  <button class="rw"></button>
@@ -95,7 +94,15 @@
         <output for="fader" id="volume" style="background:black; color:white; font-family:Avenir,Helvetica,Neue,Arial,sans-serif;">30%</output>
         </div>
         
-        </br>
+        <div style="position:relative; clear:both; margin-bottom:20px">
+        <label for="check">Load Remote Source: </label><input id="box" name="check" type="checkbox"> 
+        <label for="loop"> Loop Track: </label><input id="loop" name="loop" type="checkbox">
+        <div id="loader" class="hidden">
+          <input id="link" type="text" placeholder="http://source.site/soundfile">
+          <button id="load">Load</button>
+        </div>
+        </div>
+
         <div class="playlist"  style="position:absolute;">
           <div id="prompt"></div>
           <p>Playlist</p>
@@ -181,7 +188,7 @@
   <script src="js/CanvasRenderer.js"></script> 
 
   <!--<script src="js/visualizer2.js"></script> -->
-  <script src="js/visualizer1.js" id="visScript"></script>
+  <!-- <script src="js/visualizer1.js" id="visScript"></script> -->
   
   <!--<script src="js/visualizer3.js"></script> -->
   <!--<script src="js/visualizer4.js"></script>-->
@@ -217,8 +224,9 @@
 
   -->
 
-  <script>
-  
+<script>
+  var vis1IsOn = true, vis2IsOn = false, vis3IsOn = false;
+
 $(function() {
 var counter = 0;
 var arr = ['js/visualizer1.js','js/visualizer2.js', 'js/visualizer3.js'];
@@ -252,17 +260,23 @@ $('.classify').remove();
 $('#container1').empty();
 $('#container2').empty();
 $('#container3').empty();
-$('body').append(script);
 console.log('script', script);
 if(counter === 0){
-  vis1();
+  vis1IsOn = true;
+  vis2IsOn = false;
+  vis3IsOn = false;
 }
 if(counter === 1){
-  vis2();
+  vis1IsOn = false;
+  vis2IsOn = true;
+  vis3IsOn = false;
 }
 if(counter === 2){
-  vis3();
+  vis1IsOn = false;
+  vis2IsOn = false;
+  vis3IsOn = true;
 }
+$('body').append(script);
   });
 
 
@@ -289,17 +303,23 @@ if(counter === 2){
     $('#container1').empty();
     $('#container2').empty();
     $('#container3').empty();
-    $('body').append(script);
       console.log('script', script);
 if(counter === 0){
-  vis1();
+  vis1IsOn = true;
+  vis2IsOn = false;
+  vis3IsOn = false;
 }
 if(counter === 1){
-  vis2();
+  vis1IsOn = false;
+  vis2IsOn = true;
+  vis3IsOn = false;
 }
 if(counter === 2){
-  vis3();
+  vis1IsOn = false;
+  vis2IsOn = false;
+  vis3IsOn = true;
 }
+    $('body').append(script);
     });
 });
 
