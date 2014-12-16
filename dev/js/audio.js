@@ -76,11 +76,12 @@ var AudioManager = function() {
        };
     }
     if(AudioManager().sounds[i].type === "media"){
-      var link = AudioManager().sounds[i].data;
-      var audio = document.querySelector('audio'); // creating a reference to the <audio> tag on index.html
-      $('audio').attr("src", link);
+      var audio = document.createElement("audio");
+      audio.src = AudioManager().sounds[i].data;      
+      audio.addEventListener('ended', function(){
+        AudioManager().playNext();
+      });
       var source = AudioManager().audioContext.createMediaElementSource(audio);
-      // document.getElementById("audio").pause();
     }
 
     $('.currentSong').text(AudioManager().sounds[i].fileName);
@@ -90,7 +91,7 @@ var AudioManager = function() {
     if(AudioManager().sounds[i].type === "buffer"){ 
       AudioManager().source.start();  //only works if buffer
     }else if(AudioManager().sounds[i].type === "media"){
-      document.getElementById("audio").play();
+      audio.play();
     }
     AudioManager().paused = false;
   };
@@ -233,12 +234,6 @@ document.getElementById('fader').addEventListener('change', function (vol) {
         var volume = document.querySelector('#volume');
         volume.value = (fader.value * 100) + '%';
     });
-// document.getElementById('audio').addEventListener('ended', function(){
-//   AudioManager().playNext();
-// });
-// document.getElementById('audio').addEventListener('play', function(){
-//   AudioManager().paused = false;
-// });
 
 //==================AudioManager takeover====================
 
